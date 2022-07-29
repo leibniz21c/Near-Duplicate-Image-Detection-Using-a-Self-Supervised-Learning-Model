@@ -1,0 +1,33 @@
+{
+	"name": "SimCLR NDIR",
+	"save_dir": "saved/",
+	"n_gpu": 1,
+	"pair_data_loader": {
+		"type": "PairDataLoader",
+		"args": {
+			"root": "/datasets/sample-mfnd-all-2022-03-31/",
+			"batch_size": 64,
+			"shuffle": false,
+			"num_workers": 12
+		}
+	},
+	"test": {
+		"distance": "cosine_distance",
+		"thresholds": {
+			"start": 0,
+			"end": 2,
+			"num_threshold": 1000,
+			"logscale": false
+		},
+		"metrics": [
+			"true_positive",
+			"true_negative",
+			"false_positive",
+			"false_negative",
+			"precision",
+			"recall",
+			"f1_score",
+			"false_positive_rate"
+		]
+	}
+}

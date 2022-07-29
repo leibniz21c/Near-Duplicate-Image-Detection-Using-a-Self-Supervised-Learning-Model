@@ -1,0 +1,33 @@
+version: "3"
+services:
+  ndir-research-frame:
+    container_name: ndir-pretrained-simclr-container
+    image: ndir-pretrained-simclr-image
+    build:
+      context: .
+      dockerfile: dockerfile
+
+    # Volumns
+    volumes:
+        - .:/workspace
+        - /hdd/datasets:/datasets
+    
+    # Easy to use network
+    network_mode: host
+
+    # Inter-process communication
+    ipc: host
+
+    # Nvidia driver
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    
+    # Interactive mode
+    stdin_open: true
+    tty: true
+    entrypoint: "/bin/bash"
